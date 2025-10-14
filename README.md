@@ -56,26 +56,6 @@ http://localhost:5173
 
 ---
 
-## 📂 Folder Structure
-
-```
-Portfolio/
-├── index.html
-├── about.html
-├── contact.html
-├── projects/
-│   ├── project1.html
-│   ├── project2.html
-│   └── ...
-├── assets/
-│   ├── images/
-│   ├── css/
-│   └── js/
-├── privacy-policy.html
-└── README.md
-```
-
----
 
 ## 🔒 Data Privacy & Compliance
 
@@ -104,7 +84,7 @@ You are free to use, modify, and distribute this code with proper credit.
 📍 **Name:** M. Maphisa
 💼 **Portfolio:** [Your Portfolio URL here]
 📧 **Email:** [Your Email Address]
-🔗 **GitHub:** [https://github.com/<your-username>](https://github.com/<your-username>)
+🔗 **GitHub:** https://github.com/mmelokuhlemaphisa/-Portfolio-Of-Melokuhle-Maphisa
 
 ---
 
