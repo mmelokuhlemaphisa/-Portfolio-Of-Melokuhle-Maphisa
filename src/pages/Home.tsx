@@ -12,14 +12,7 @@ interface SkillsCategory {
   [key: string]: Skill[];
 }
 
-interface Project {
-  title: string;
-  description: string;
-  tech: string[];
-  github: string;
-  live: string;
-  image: string;
-}
+
 
 export default function Home() {
   const [displayText, setDisplayText] = useState<string>("");
