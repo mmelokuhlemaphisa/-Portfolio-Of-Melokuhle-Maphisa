@@ -530,7 +530,7 @@ export default function Home() {
               style={{
                 fontSize: "2.5rem",
                 fontWeight: "700",
-                marginBottom: "2rem",
+              marginTop: "2rem",
               }}
             >
               About Me

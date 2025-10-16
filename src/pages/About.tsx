@@ -15,9 +15,9 @@ export default function About() {
       
       CONTACT INFORMATION
       -------------------
-      Email: melokuhle@example.com
-      Location: South Africa
-      GitHub: github.com/melokuhle
+      Email: melokuhlemaphisa99@gmail.com
+      Location: Ezembeni Area, Ceza, 3866
+      GitHub: https://github.com/mmelokuhlemaphisa
       LinkedIn: linkedin.com/in/melokuhle-maphisa
       
       PROFESSIONAL SUMMARY
@@ -31,9 +31,8 @@ export default function About() {
       ----------------
       • Frontend: JavaScript, TypeScript, React, HTML5, CSS3, Tailwind CSS
       • Backend: Node.js, Express.js, Python, REST APIs
-      • Databases: MongoDB, PostgreSQL
       • Tools: Git, GitHub, VS Code, Docker, Postman, Figma
-      • Methodologies: Agile, Scrum, Responsive Design, UI/UX Principles
+      • Methodologies: Responsive Design, UI/UX Principles
       
       EDUCATION
       ---------
@@ -43,22 +42,22 @@ export default function About() {
       
       PROJECT EXPERIENCE
       ------------------
-      E-Commerce Platform (2024)
+      E-Commerce Platform 
       - Full-stack e-commerce solution with React, Node.js, and MongoDB
       - Implemented user authentication, product catalog, and payment integration
       - Features: Responsive design, real-time inventory, secure checkout
       
-      Task Management App (2024)
+      Task Management App 
       - Collaborative task management application with real-time updates
       - Built with React, Firebase, and Material-UI
       - Features: Drag-and-drop interface, team collaboration, progress tracking
       
-      Weather Dashboard (2023)
+      Weather Dashboard 
       - Responsive weather application with location-based forecasts
       - Integrated with weather API for real-time data
       - Features: Geolocation, 7-day forecast, responsive design
       
-      Portfolio Website (2023)
+      Portfolio Website 
       - Modern responsive portfolio with smooth animations
       - Built with React, TypeScript, and custom CSS
       - Features: Interactive UI, mobile-responsive, optimized performance
