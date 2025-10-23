@@ -1,6 +1,6 @@
+import React, { useState, useEffect } from "react";
 import NavBar from "../Components/NavBar";
 import Footer from "../Components/footer";
-import { useState, useEffect } from "react";
 
 interface Skill {
   name: string;
@@ -8,19 +8,21 @@ interface Skill {
   icon: string;
 }
 
-interface SkillsCategory {
-  [key: string]: Skill[];
+interface Project {
+  title: string;
+  description: string;
+  tech: string[];
+  github: string;
+  live: string;
+  image: string;
 }
 
-
-
 export default function Home() {
-  const [displayText, setDisplayText] = useState<string>("");
-  const [currentWordIndex, setCurrentWordIndex] = useState<number>(0);
-  const [isDeleting, setIsDeleting] = useState<boolean>(false);
-  const [activeTab, setActiveTab] = useState<string>("frontend");
+  const [displayText, setDisplayText] = useState("");
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
 
-  const words: string[] = [
+  const words = [
     "Full-Stack Developer",
     "Problem Solver",
     "UI/UX Enthusiast",
@@ -28,28 +30,62 @@ export default function Home() {
     "Tech Innovator",
   ];
 
-  const skills: SkillsCategory = {
-    frontend: [
-      { name: "React", level: 90, icon: "⚛️" },
-      { name: "JavaScript", level: 88, icon: "🟨" },
-      { name: "TypeScript", level: 85, icon: "🔷" },
-      { name: "HTML/CSS", level: 95, icon: "🎨" },
-      { name: "Bootstrap", level: 85, icon: "🌊" },
-    ],
-    backend: [
-      { name: "Node.js", level: 82, icon: "🟢" },
-      { name: "REST APIs", level: 85, icon: "🔗" },
-      { name: "json-server", level: 80, icon: "💾" }
-    ],
-    tools: [
-      { name: "Git/GitHub", level: 88, icon: "📚" },
-      { name: "VS Code", level: 90, icon: "💻" },
-      { name: "Figma", level: 75, icon: "🎯" },
-      { name: "Postman", level: 80, icon: "📬" },
-    
-    ],
-  };
+  const skills: Skill[] = [
+    { name: "React", level: 90, icon: "⚛️" },
+    { name: "JavaScript", level: 88, icon: "🟨" },
+    { name: "TypeScript", level: 85, icon: "🔷" },
+    { name: "Node.js", level: 82, icon: "🟢" },
+    { name: "HTML/CSS", level: 95, icon: "🎨" },
+    { name: "Bootstrap", level: 85, icon: "🌊" },
+    { name: "Git/GitHub", level: 88, icon: "📚" },
+    { name: "VS Code", level: 90, icon: "💻" },
+  ];
 
+  const projects: Project[] = [
+    {
+      title: "Job Tracker App",
+      description:
+        "Professional job application tracking system with status management and analytics",
+      tech: ["React", "Node.js", "MongoDB", "CSS3"],
+      github: "https://github.com/mmelokuhlemaphisa/job-tracker-app",
+      live: "https://job-tracker-app-wmdf.onrender.com/",
+      image: "�",
+    },
+    {
+      title: "Weather Application",
+      description: "Real-time weather forecasting app with location-based data and responsive design",
+      tech: ["JavaScript", "Weather API", "HTML5", "CSS3"],
+      github: "https://github.com/mmelokuhlemaphisa/weather-application",
+      live: "https://weather-application-3wux.onrender.com/",
+      image: "🌤️",
+    },
+    {
+      title: "Shopping List App",
+      description:
+        "Interactive shopping list manager with add, edit, and delete functionality",
+      tech: ["JavaScript", "HTML5", "CSS3", "Local Storage"],
+      github: "https://github.com/mmelokuhlemaphisa/shopping-list-app",
+      live: "#",
+      image: "🛒",
+    },
+    {
+      title: "Dictionary App",
+      description: "Comprehensive dictionary application with word definitions and pronunciations",
+      tech: ["React", "Dictionary API", "CSS3"],
+      github: "https://github.com/mmelokuhlemaphisa/dictionary-app",
+      live: "#",
+      image: "📚",
+    },
+    {
+      title: "Electrical SDS Vault",
+      description:
+        "Safety Data Sheet management system for electrical components and equipment",
+      tech: ["React", "Node.js", "Database", "PDF Management"],
+      github: "https://github.com/mmelokuhlemaphisa/electrical-sds-vault",
+      live: "#",
+      image: "⚡",
+    },
+  ];
 
   useEffect(() => {
     const typeEffect = () => {
@@ -79,223 +115,351 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, [displayText, isDeleting, currentWordIndex, words]);
 
-  const handleButtonHover = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.currentTarget.style.transform = "translateY(-3px)";
-    e.currentTarget.style.boxShadow = "0 15px 40px rgba(66, 68, 78, 0.6)";
-  };
-
-  const handleButtonOut = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.currentTarget.style.transform = "translateY(0)";
-    e.currentTarget.style.boxShadow = "0 10px 30px rgba(102, 126, 234, 0.4)";
-  };
-
-  const handleOutlineButtonHover = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.currentTarget.style.background = "#667eea";
-    e.currentTarget.style.color = "white";
-    e.currentTarget.style.transform = "translateY(-3px)";
-  };
-
-  const handleOutlineButtonOut = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.currentTarget.style.background = "transparent";
-    e.currentTarget.style.color = "#667eea";
-    e.currentTarget.style.transform = "translateY(0)";
-  };
-
-  const handleCardHover = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.currentTarget.style.transform = "translateY(-5px)";
-  };
-
-  const handleCardOut = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.currentTarget.style.transform = "translateY(0)";
-  };
-
- const handleResumeButtonHover = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.currentTarget.style.transform = "translateY(-3px)";
-    e.currentTarget.style.boxShadow = "0 15px 40px rgba(0, 0, 0, 0.3)";
-  };
-
-  const handleResumeButtonOut = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.currentTarget.style.transform = "translateY(0)";
-    e.currentTarget.style.boxShadow = "0 10px 30px rgba(0, 0, 0, 0.2)";
-  };
-
   return (
     <div
       style={{
         minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
         background: "#fff",
         color: "#222",
         fontFamily: "'Inter', 'Segoe UI', Arial, sans-serif",
-        overflowX: "hidden",
       }}
     >
       <NavBar />
 
-      <main
+      {/* Hero Section */}
+      <section
         style={{
-          flex: 1,
-          padding: "0",
-          textAlign: "center",
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
           position: "relative",
+          background: "linear-gradient(135deg, #fff 0%, #f8f9fa 100%)",
+          padding: "2rem",
         }}
       >
-        {/* Hero Section */}
-        <section
+        {/* Floating Background Elements */}
+        <div
           style={{
-            minHeight: "100vh",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            position: "absolute",
+            top: "20%",
+            left: "10%",
+            width: "60px",
+            height: "60px",
+            background: "linear-gradient(45deg, #e9ecef, #dee2e6)",
+            borderRadius: "50%",
+            opacity: 0.3,
+            animation: "float 6s ease-in-out infinite",
+          }}
+        />
+
+        <div
+          style={{
+            position: "absolute",
+            top: "60%",
+            right: "15%",
+            width: "40px",
+            height: "40px",
+            background: "linear-gradient(45deg, #adb5bd, #868e96)",
+            borderRadius: "50%",
+            opacity: 0.3,
+            animation: "float 4s ease-in-out infinite 1s",
+          }}
+        />
+
+        <div
+          style={{
             position: "relative",
-            background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)",
+            zIndex: 2,
+            textAlign: "center",
+            maxWidth: "800px",
           }}
         >
-          {/* Background Elements */}
+          {/* Avatar */}
           <div
             style={{
-              position: "absolute",
-              top: "20%",
-              left: "10%",
-              width: "60px",
-              height: "60px",
-              background: "linear-gradient(45deg, white, black)",
+              width: "160px",
+              height: "160px",
+              margin: "0 auto 2rem",
+              background: "linear-gradient(135deg, #343a40 0%, #6c757d 100%)",
               borderRadius: "50%",
-              opacity: 0.1,
-              animation: "float 6s ease-in-out infinite",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "white",
+              fontSize: "4rem",
+              fontWeight: "bold",
+              boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
+              border: "4px solid white",
+              transition: "transform 0.3s ease",
             }}
-          />
+            onMouseOver={(e) =>
+              (e.currentTarget.style.transform = "scale(1.05)")
+            }
+            onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+          >
+            MM
+          </div>
 
-          <div
+          <h1
             style={{
-              position: "absolute",
-              top: "60%",
-              right: "15%",
-              width: "40px",
-              height: "40px",
-              background: "linear-gradient(45deg, #f093fb, #f5576c)",
-              borderRadius: "50%",
-              opacity: 0.1,
-              animation: "float 4s ease-in-out infinite 1s",
-            }}
-          />
-
-          <div
-            style={{
-              position: "absolute",
-              bottom: "30%",
-              left: "20%",
-              width: "80px",
-              height: "80px",
-              background: "linear-gradient(45deg, #4facfe, #00f2fe)",
-              borderRadius: "20%",
-              transform: "rotate(45deg)",
-              opacity: 0.1,
-              animation: "float 8s ease-in-out infinite 0.5s",
-            }}
-          />
-
-          {/* Hero Content */}
-          <div
-            style={{
-              position: "relative",
-              zIndex: 2,
-              padding: "2rem",
-              maxWidth: "1200px",
-              margin: "0 auto",
+              fontSize: "4rem",
+              fontWeight: "800",
+              marginBottom: "1rem",
+              background: "linear-gradient(135deg, #212529 0%, #495057 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              letterSpacing: "-1px",
+              lineHeight: "1.1",
             }}
           >
-            <div
+            Melokuhle Maphisa
+          </h1>
+
+          {/* Animated Typing Text */}
+          <div
+            style={{
+              fontSize: "2rem",
+              fontWeight: "600",
+              marginBottom: "2rem",
+              color: "#495057",
+              minHeight: "80px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.5rem",
+            }}
+          >
+            <span>I'm a</span>
+            <span
               style={{
-                width: "140px",
-                height: "140px",
-                margin: "0 auto 2rem",
-                background: "linear-gradient(135deg, white 0%, black 100%)",
-                borderRadius: "50%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                color: "#212529",
+                fontWeight: "700",
+                borderRight: "3px solid #6c757d",
+                paddingRight: "8px",
+                minWidth: "320px",
+                textAlign: "left",
+              }}
+            >
+              {displayText}
+            </span>
+          </div>
+
+          <p
+            style={{
+              fontSize: "1.3rem",
+              color: "#6c757d",
+              marginBottom: "3rem",
+              lineHeight: "1.7",
+              fontWeight: "400",
+            }}
+          >
+            Passionate software developer crafting digital experiences that
+            blend beautiful design with cutting-edge functionality.
+          </p>
+
+          {/* CTA Buttons */}
+          <div
+            style={{
+              display: "flex",
+              gap: "2rem",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              marginBottom: "4rem",
+            }}
+          >
+            <button
+              style={{
+                padding: "16px 40px",
+                background: "#212529",
                 color: "white",
-                fontSize: "3rem",
-                fontWeight: "bold",
-                boxShadow: "0 20px 40px rgba(102, 126, 234, 0.3)",
-                border: "4px solid white",
-                animation: "bounce 2s ease-in-out infinite",
-              }}
-            >
-              MM
-            </div>
-
-            <h1
-              style={{
-                fontSize: "3.5rem",
-                fontWeight: "800",
-              }}
-            >
-              Melokuhle Maphisa
-            </h1>
-
-            <div
-              style={{
-                fontSize: "1.8rem",
+                border: "none",
+                borderRadius: "50px",
+                fontSize: "1.1rem",
                 fontWeight: "600",
-                marginBottom: "2rem",
-                color: "#444",
-                minHeight: "60px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "0.5rem",
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+                boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
               }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.background = "#495057";
+                e.currentTarget.style.transform = "translateY(-3px)";
+                e.currentTarget.style.boxShadow =
+                  "0 15px 40px rgba(0,0,0,0.25)";
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.background = "#212529";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow =
+                  "0 10px 30px rgba(0,0,0,0.15)";
+              }}
+              onClick={() =>
+                document
+                  .getElementById("projects")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
             >
-              <span>I'm a</span>
-              <span
+              View My Work
+            </button>
+
+            <button
+              style={{
+                padding: "16px 40px",
+                background: "transparent",
+                color: "#212529",
+                border: "2px solid #212529",
+                borderRadius: "50px",
+                fontSize: "1.1rem",
+                fontWeight: "600",
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.background = "#f8f9fa";
+                e.currentTarget.style.transform = "translateY(-3px)";
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.background = "transparent";
+                e.currentTarget.style.transform = "translateY(0)";
+              }}
+              onClick={() =>
+                document
+                  .getElementById("contact")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
+              Let's Connect
+            </button>
+          </div>
+
+          {/* Stats */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: "4rem",
+              flexWrap: "wrap",
+              padding: "2.5rem",
+              background: "rgba(255, 255, 255, 0.9)",
+              borderRadius: "20px",
+              backdropFilter: "blur(10px)",
+              boxShadow: "0 10px 40px rgba(0,0,0,0.1)",
+              border: "1px solid rgba(255,255,255,0.2)",
+            }}
+          >
+            <div style={{ textAlign: "center" }}>
+              <div
                 style={{
-                  color: "#667eea",
-                  fontWeight: "700",
-                  borderRight: "2px solid #667eea",
-                  paddingRight: "4px",
-                  minWidth: "280px",
-                  textAlign: "left",
+                  fontSize: "3rem",
+                  fontWeight: "800",
+                  color: "#212529",
+                  marginBottom: "0.5rem",
                 }}
               >
-                {displayText}
-              </span>
+                3+
+              </div>
+              <div style={{ color: "#6c757d", fontWeight: "500" }}>
+                Years Experience
+              </div>
             </div>
+            <div style={{ textAlign: "center" }}>
+              <div
+                style={{
+                  fontSize: "3rem",
+                  fontWeight: "800",
+                  color: "#212529",
+                  marginBottom: "0.5rem",
+                }}
+              >
+                15+
+              </div>
+              <div style={{ color: "#6c757d", fontWeight: "500" }}>
+                Projects Completed
+              </div>
+            </div>
+            <div style={{ textAlign: "center" }}>
+              <div
+                style={{
+                  fontSize: "3rem",
+                  fontWeight: "800",
+                  color: "#212529",
+                  marginBottom: "0.5rem",
+                }}
+              >
+                8+
+              </div>
+              <div style={{ color: "#6c757d", fontWeight: "500" }}>
+                Technologies
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <p
-              style={{
-                fontSize: "1.25rem",
-                color: "#666",
-                marginBottom: "3rem",
-                maxWidth: "600px",
-                marginLeft: "auto",
-                marginRight: "auto",
-                lineHeight: "1.6",
-                fontWeight: "400",
-              }}
-            >
-              Passionate software developer crafting digital experiences that
-              blend beautiful design with cutting-edge functionality. Let's
-              build something amazing together.
-            </p>
+      {/* About Section */}
+      <section
+        id="about"
+        style={{
+          padding: "8rem 2rem",
+          background: "#f8f9fa",
+        }}
+      >
+        <div
+          style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}
+        >
+          <h2
+            style={{
+              fontSize: "3rem",
+              fontWeight: "700",
+              marginBottom: "3rem",
+              color: "#212529",
+            }}
+          >
+            About Me
+          </h2>
 
-            <div
-              style={{
-                display: "flex",
-                gap: "1.5rem",
-                justifyContent: "center",
-                alignItems: "center",
-                marginBottom: "4rem",
-                flexWrap: "wrap",
-              }}
-            >
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "4rem",
+              alignItems: "center",
+              marginBottom: "4rem",
+            }}
+          >
+            <div style={{ textAlign: "left" }}>
+              <p
+                style={{
+                  fontSize: "1.2rem",
+                  lineHeight: "1.8",
+                  color: "#495057",
+                  marginBottom: "2rem",
+                }}
+              >
+                I'm a passionate software developer with over 3 years of
+                experience creating web applications that solve real-world
+                problems. I specialize in modern JavaScript frameworks and love
+                working on both frontend and backend development.
+              </p>
+              <p
+                style={{
+                  fontSize: "1.2rem",
+                  lineHeight: "1.8",
+                  color: "#495057",
+                  marginBottom: "2rem",
+                }}
+              >
+                When I'm not coding, you can find me exploring new technologies,
+                contributing to open-source projects, or sharing knowledge with
+                the developer community. I believe in continuous learning and
+                staying updated with the latest industry trends.
+              </p>
+
               <button
                 style={{
                   padding: "14px 32px",
-                  background:
-                    "linear-gradient(135deg, white 0%, black 100%)",
+                  background: "#212529",
                   color: "white",
                   border: "none",
                   borderRadius: "50px",
@@ -303,159 +467,53 @@ export default function Home() {
                   fontWeight: "600",
                   cursor: "pointer",
                   transition: "all 0.3s ease",
-                  boxShadow: "0 10px 30px rgba(102, 126, 234, 0.4)",
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
                 }}
-                onMouseOver={handleButtonHover}
-                onMouseOut={handleButtonOut}
-              >
-                View My Work
-              </button>
-
-              <button
-                style={{
-                  padding: "14px 32px",
-                  background: "transparent",
-                  color: "#667eea",
-                  border: "2px solid #667eea",
-                  borderRadius: "50px",
-                  fontSize: "1.1rem",
-                  fontWeight: "600",
-                  cursor: "pointer",
-                  transition: "all 0.3s ease",
+                onMouseOver={(e) => {
+                  e.currentTarget.style.background = "#495057";
+                  e.currentTarget.style.transform = "translateY(-3px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 15px 40px rgba(0,0,0,0.25)";
                 }}
-                onMouseOver={handleOutlineButtonHover}
-                onMouseOut={handleOutlineButtonOut}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.background = "#212529";
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow =
+                    "0 10px 30px rgba(0,0,0,0.15)";
+                }}
               >
-                Let's Connect
+                Download Resume
               </button>
-            </div>
-
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                gap: "4rem",
-                flexWrap: "wrap",
-                padding: "2rem",
-                background: "rgba(255, 255, 255, 0.8)",
-                borderRadius: "20px",
-                maxWidth: "800px",
-                margin: "0 auto",
-                backdropFilter: "blur(10px)",
-                boxShadow: "0 10px 40px rgba(0, 0, 0, 0.1)",
-              }}
-            >
-              
-
-              <div style={{ textAlign: "center" }}>
-                <div
-                  style={{
-                    fontSize: "2.5rem",
-                    fontWeight: "800",
-                    color: "black",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  7+
-                </div>
-                <div style={{ color: "#666", fontWeight: "500" }}>
-                  Projects Completed
-                </div>
-              </div>
-
-              <div style={{ textAlign: "center" }}>
-                <div
-                  style={{
-                    fontSize: "2.5rem",
-                    fontWeight: "800",
-                    color: "black",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  5+
-                </div>
-                <div style={{ color: "#666", fontWeight: "500" }}>
-                  Technologies
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Skills & Technologies Section */}
-        <section
-          style={{
-            padding: "6rem 2rem",
-            background: "#f8f9fa",
-          }}
-        >
-          <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <h2
-              style={{
-                fontSize: "2.5rem",
-                fontWeight: "700",
-                marginBottom: "3rem",
-                color: "#333",
-                textAlign: "center",
-              }}
-            >
-              Skills & Technologies
-            </h2>
-
-            <div
-              style={{
-                display: "flex",
-                gap: "2rem",
-                justifyContent: "center",
-                marginBottom: "3rem",
-                flexWrap: "wrap",
-              }}
-            >
-              {Object.keys(skills).map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  style={{
-                    padding: "12px 24px",
-                    background:
-                      activeTab === tab
-                        ? "linear-gradient(135deg, white 0%, black 100%)"
-                        : "transparent",
-                    color: activeTab === tab ? "white" : "#667eea",
-                    border: `2px solid #667eea`,
-                    borderRadius: "25px",
-                    fontSize: "1rem",
-                    fontWeight: "600",
-                    cursor: "pointer",
-                    transition: "all 0.3s ease",
-                    textTransform: "capitalize",
-                  }}
-                >
-                  {tab}
-                </button>
-              ))}
             </div>
 
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-                gap: "2rem",
-                marginTop: "2rem",
+                gridTemplateColumns: "repeat(2, 1fr)",
+                gap: "1.5rem",
               }}
             >
-              {skills[activeTab].map((skill: Skill, index: number) => (
+              {skills.map((skill, index) => (
                 <div
                   key={index}
                   style={{
                     background: "white",
                     padding: "2rem",
                     borderRadius: "15px",
-                    boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)",
-                    transition: "transform 0.3s ease",
+                    boxShadow: "0 5px 20px rgba(0,0,0,0.08)",
+                    transition: "all 0.3s ease",
+                    cursor: "pointer",
                   }}
-                  onMouseOver={handleCardHover}
-                  onMouseOut={handleCardOut}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.transform = "translateY(-5px)";
+                    e.currentTarget.style.boxShadow =
+                      "0 15px 40px rgba(0,0,0,0.15)";
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.transform = "translateY(0)";
+                    e.currentTarget.style.boxShadow =
+                      "0 5px 20px rgba(0,0,0,0.08)";
+                  }}
                 >
                   <div
                     style={{
@@ -468,9 +526,9 @@ export default function Home() {
                     <span style={{ fontSize: "2rem" }}>{skill.icon}</span>
                     <h3
                       style={{
-                        fontSize: "1.3rem",
+                        fontSize: "1.1rem",
                         fontWeight: "600",
-                        color: "#333",
+                        color: "#212529",
                         margin: 0,
                       }}
                     >
@@ -479,20 +537,20 @@ export default function Home() {
                   </div>
                   <div
                     style={{
-                      height: "8px",
+                      height: "6px",
                       background: "#e9ecef",
-                      borderRadius: "4px",
+                      borderRadius: "3px",
                       overflow: "hidden",
+                      marginBottom: "0.5rem",
                     }}
                   >
                     <div
                       style={{
                         height: "100%",
-                        background:
-                          "linear-gradient(135deg, grey 0%, black 100%)",
-                        borderRadius: "4px",
+                        background: "linear-gradient(90deg, #212529, #495057)",
+                        borderRadius: "3px",
                         width: `${skill.level}%`,
-                        transition: "width 1s ease-in-out",
+                        transition: "width 1.5s ease-in-out",
                       }}
                     />
                   </div>
@@ -500,8 +558,7 @@ export default function Home() {
                     style={{
                       display: "flex",
                       justifyContent: "space-between",
-                      marginTop: "0.5rem",
-                      color: "#666",
+                      color: "#6c757d",
                       fontSize: "0.9rem",
                     }}
                   >
@@ -512,108 +569,388 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-      
-        {/* About Section */}
-        <section
-          style={{
-            padding: "6rem 2rem",
-            background: "linear-gradient(135deg, grey 0%, black 100%)",
-            color: "white",
-          }}
-        >
-          <div
-            style={{ maxWidth: "800px", margin: "0 auto", textAlign: "center" }}
+      {/* Projects Section */}
+      <section
+        id="projects"
+        style={{
+          padding: "8rem 2rem",
+          background: "white",
+        }}
+      >
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <h2
+            style={{
+              fontSize: "3rem",
+              fontWeight: "700",
+              marginBottom: "1rem",
+              color: "#212529",
+              textAlign: "center",
+            }}
           >
-            <h2
-              style={{
-                fontSize: "2.5rem",
-                fontWeight: "700",
-              marginTop: "2rem",
-              }}
-            >
-              About Me
-            </h2>
+            Featured Projects
+          </h2>
+          <p
+            style={{
+              fontSize: "1.2rem",
+              color: "#6c757d",
+              textAlign: "center",
+              marginBottom: "4rem",
+              maxWidth: "600px",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
+          >
+            Here are some of my recent projects that showcase my skills and
+            passion for development.
+          </p>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
+              gap: "2.5rem",
+            }}
+          >
+            {projects.map((project, index) => (
+              <div
+                key={index}
+                style={{
+                  background: "white",
+                  borderRadius: "20px",
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+                  overflow: "hidden",
+                  transition: "all 0.3s ease",
+                  cursor: "pointer",
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.transform = "translateY(-10px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 25px 50px rgba(0,0,0,0.15)";
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow =
+                    "0 10px 30px rgba(0,0,0,0.08)";
+                }}
+              >
+                <div
+                  style={{
+                    height: "200px",
+                    background:
+                      "linear-gradient(135deg, #212529 0%, #495057 100%)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "4rem",
+                    color: "white",
+                  }}
+                >
+                  {project.image}
+                </div>
+                <div style={{ padding: "2rem" }}>
+                  <h3
+                    style={{
+                      fontSize: "1.5rem",
+                      fontWeight: "600",
+                      marginBottom: "1rem",
+                      color: "#212529",
+                    }}
+                  >
+                    {project.title}
+                  </h3>
+                  <p
+                    style={{
+                      color: "#6c757d",
+                      marginBottom: "1.5rem",
+                      lineHeight: "1.6",
+                    }}
+                  >
+                    {project.description}
+                  </p>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: "0.5rem",
+                      marginBottom: "2rem",
+                    }}
+                  >
+                    {project.tech.map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        style={{
+                          background: "#f8f9fa",
+                          color: "#495057",
+                          padding: "0.4rem 1rem",
+                          borderRadius: "20px",
+                          fontSize: "0.9rem",
+                          fontWeight: "500",
+                          border: "1px solid #e9ecef",
+                        }}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "1rem",
+                    }}
+                  >
+                    <button
+                      style={{
+                        padding: "12px 24px",
+                        background: "transparent",
+                        color: "#212529",
+                        border: "2px solid #212529",
+                        borderRadius: "25px",
+                        fontSize: "0.9rem",
+                        fontWeight: "600",
+                        cursor: "pointer",
+                        transition: "all 0.3s ease",
+                        flex: 1,
+                      }}
+                      onMouseOver={(e) => {
+                        e.currentTarget.style.background = "#f8f9fa";
+                        e.currentTarget.style.transform = "translateY(-2px)";
+                      }}
+                      onMouseOut={(e) => {
+                        e.currentTarget.style.background = "transparent";
+                        e.currentTarget.style.transform = "translateY(0)";
+                      }}
+                    >
+                      GitHub
+                    </button>
+                    <button
+                      style={{
+                        padding: "12px 24px",
+                        background: "#212529",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "25px",
+                        fontSize: "0.9rem",
+                        fontWeight: "600",
+                        cursor: "pointer",
+                        transition: "all 0.3s ease",
+                        flex: 1,
+                      }}
+                      onMouseOver={(e) => {
+                        e.currentTarget.style.background = "#495057";
+                        e.currentTarget.style.transform = "translateY(-2px)";
+                      }}
+                      onMouseOut={(e) => {
+                        e.currentTarget.style.background = "#212529";
+                        e.currentTarget.style.transform = "translateY(0)";
+                      }}
+                    >
+                      Live Demo
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section
+        id="contact"
+        style={{
+          padding: "8rem 2rem",
+          background: "#212529",
+          color: "white",
+        }}
+      >
+        <div
+          style={{ maxWidth: "800px", margin: "0 auto", textAlign: "center" }}
+        >
+          <h2
+            style={{
+              fontSize: "3rem",
+              fontWeight: "700",
+              marginBottom: "2rem",
+            }}
+          >
+            Get In Touch
+          </h2>
+          <p
+            style={{
+              fontSize: "1.2rem",
+              marginBottom: "3rem",
+              opacity: 0.9,
+              lineHeight: "1.7",
+            }}
+          >
+            I'm always open to discussing new opportunities, interesting
+            projects, or just having a chat about technology. Feel free to reach
+            out!
+          </p>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+              gap: "2rem",
+              marginBottom: "3rem",
+            }}
+          >
             <div
               style={{
-                fontSize: "1.1rem",
-                lineHeight: "1.8",
-                marginBottom: "3rem",
-                opacity: 0.9,
-              }}
-            >
-              <p>
-                I'm a passionate software developer with  creating web applications that solve real-world
-                problems. I specialize in modern JavaScript frameworks and love
-                working on both frontend and backend development.
-              </p>
-              <p>
-                When I'm not coding, you can find me exploring new technologies,
-                contributing to open-source projects, or sharing knowledge with
-                the developer community. I believe in continuous learning and
-                staying updated with the latest industry trends.
-              </p>
-            </div>
-            <button
-              style={{
-                padding: "14px 32px",
-                background: "white",
-                color: "#667eea",
-                border: "none",
-                borderRadius: "50px",
-                fontSize: "1.1rem",
-                fontWeight: "600",
-                cursor: "pointer",
+                padding: "2rem",
+                background: "rgba(255,255,255,0.1)",
+                borderRadius: "15px",
                 transition: "all 0.3s ease",
-                boxShadow: "0 10px 30px rgba(0, 0, 0, 0.2)",
               }}
-              onMouseOver={handleResumeButtonHover}
-              onMouseOut={handleResumeButtonOut}
+              onMouseOver={(e) => {
+                e.currentTarget.style.background = "rgba(255,255,255,0.15)";
+                e.currentTarget.style.transform = "translateY(-5px)";
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.background = "rgba(255,255,255,0.1)";
+                e.currentTarget.style.transform = "translateY(0)";
+              }}
             >
-              Download Resume
-            </button>
+              <h3 style={{ fontSize: "1.3rem", marginBottom: "1rem" }}>
+                📧 Email
+              </h3>
+              <p style={{ opacity: 0.8 }}>melokuhle99@gmail.com</p>
+            </div>
+
+            <div
+              style={{
+                padding: "2rem",
+                background: "rgba(255,255,255,0.1)",
+                borderRadius: "15px",
+                transition: "all 0.3s ease",
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.background = "rgba(255,255,255,0.15)";
+                e.currentTarget.style.transform = "translateY(-5px)";
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.background = "rgba(255,255,255,0.1)";
+                e.currentTarget.style.transform = "translateY(0)";
+              }}
+            >
+              <h3 style={{ fontSize: "1.3rem", marginBottom: "1rem" }}>
+                💼 LinkedIn
+              </h3>
+              <p style={{ opacity: 0.8 }}>linkedin.com/in/melokuhle</p>
+            </div>
+
+            <div
+              style={{
+                padding: "2rem",
+                background: "rgba(255,255,255,0.1)",
+                borderRadius: "15px",
+                transition: "all 0.3s ease",
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.background = "rgba(255,255,255,0.15)";
+                e.currentTarget.style.transform = "translateY(-5px)";
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.background = "rgba(255,255,255,0.1)";
+                e.currentTarget.style.transform = "translateY(0)";
+              }}
+            >
+              <h3 style={{ fontSize: "1.3rem", marginBottom: "1rem" }}>
+                📱 GitHub
+              </h3>
+              <p style={{ opacity: 0.8 }}>https://github.com/mmelokuhlemaphisa</p>
+            </div>
           </div>
-        </section>
 
-        {/* CSS Animations */}
-        <style>{`
-          @keyframes float {
-            0%, 100% {
-              transform: translateY(0px) rotate(0deg);
-            }
-            50% {
-              transform: translateY(-20px) rotate(180deg);
-            }
+          <button
+            style={{
+              padding: "16px 40px",
+              background: "white",
+              color: "#212529",
+              border: "none",
+              borderRadius: "50px",
+              fontSize: "1.1rem",
+              fontWeight: "600",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+              boxShadow: "0 10px 30px rgba(255,255,255,0.2)",
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.background = "#f8f9fa";
+              e.currentTarget.style.transform = "translateY(-3px)";
+              e.currentTarget.style.boxShadow =
+                "0 15px 40px rgba(255,255,255,0.3)";
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.background = "white";
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow =
+                "0 10px 30px rgba(255,255,255,0.2)";
+            }}
+          >
+            Send Message
+          </button>
+        </div>
+      </section>
+
+      {/* CSS Animations */}
+      <style>{`
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-20px) rotate(180deg);
+          }
+        }
+
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+
+        html {
+          scroll-behavior: smooth;
+        }
+
+        @media (max-width: 768px) {
+          h1 {
+            font-size: 2.5rem !important;
+          }
+          
+          .hero-subtitle {
+            font-size: 1.5rem !important;
+            flex-direction: column !important;
+          }
+          
+          .stats-container {
+            gap: 2rem !important;
+            flex-direction: column !important;
           }
 
-          @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-              transform: translateY(0);
-            }
-            40% {
-              transform: translateY(-10px);
-            }
-            60% {
-              transform: translateY(-5px);
-            }
+          .about-grid {
+            grid-template-columns: 1fr !important;
+            gap: 3rem !important;
           }
 
-          @media (max-width: 768px) {
-            .hero-title {
-              font-size: 2.5rem !important;
-            }
-            
-            .hero-subtitle {
-              fontSize: 1.2rem !important;
-            }
-            
-            .stats-container {
-              gap: 2rem !important;
-            }
+          .skills-grid {
+            grid-template-columns: 1fr !important;
           }
-        `}</style>
-      </main>
+
+          .projects-grid {
+            grid-template-columns: 1fr !important;
+          }
+
+          .contact-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
 
       <Footer />
     </div>
