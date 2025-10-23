@@ -60,65 +60,71 @@ const About: React.FC = () => {
 
   const handleDownloadCV = async () => {
     setIsDownloading(true);
-    
+
     try {
       // Create PDF document
       const pdf = new jsPDF();
-      
+
       // Set page margins
       const margin = 20;
       const pageWidth = pdf.internal.pageSize.width;
-      const contentWidth = pageWidth - (margin * 2);
-      
+      const contentWidth = pageWidth - margin * 2;
+
       // Header background
       pdf.setFillColor(33, 37, 41); // Dark background
-      pdf.rect(0, 0, pageWidth, 50, 'F');
-      
+      pdf.rect(0, 0, pageWidth, 50, "F");
+
       // Header text
       pdf.setTextColor(255, 255, 255); // White text
       pdf.setFontSize(28);
       pdf.setFont("helvetica", "bold");
-      pdf.text("MELOKUHLE MAPHISA", pageWidth/2, 25, { align: "center" });
-      
+      pdf.text("MELOKUHLE MAPHISA", pageWidth / 2, 25, { align: "center" });
+
       // Subtitle
       pdf.setFontSize(14);
       pdf.setFont("helvetica", "normal");
-      pdf.text("Software Developer & ICT Business Analyst", pageWidth/2, 38, { align: "center" });
-      
+      pdf.text("Software Developer & ICT Business Analyst", pageWidth / 2, 38, {
+        align: "center",
+      });
+
       // Reset text color to black
       pdf.setTextColor(0, 0, 0);
       let yPos = 65;
-      
+
       // Contact Information Section
       pdf.setFillColor(248, 249, 250); // Light gray background
-      pdf.rect(margin, yPos - 5, contentWidth, 35, 'F');
-      
+      pdf.rect(margin, yPos - 5, contentWidth, 35, "F");
+
       pdf.setFontSize(16);
       pdf.setFont("helvetica", "bold");
       pdf.setTextColor(33, 37, 41); // Dark gray
       pdf.text("CONTACT INFORMATION", margin + 5, yPos + 5);
       yPos += 15;
-      
+
       // Contact details in two columns
       pdf.setFontSize(11);
       pdf.setFont("helvetica", "normal");
       pdf.setTextColor(0, 0, 0);
-      
+
       // Left column
       pdf.text("Email: melokuhlemaphisa99@gmail.com", margin + 5, yPos);
       pdf.text("Phone: 064 958 1777", margin + 5, yPos + 6);
       pdf.text("Address: Ezembeni Area, Ceza, 3866", margin + 5, yPos + 12);
-      
+
       // Right column
       pdf.text("GitHub: github.com/mmelokuhlemaphisa", margin + 100, yPos);
-      pdf.text("LinkedIn: linkedin.com/in/melokuhle-maphisa", margin + 100, yPos + 6);
-      
+      pdf.text(
+        "LinkedIn: linkedin.com/in/melokuhle-maphisa",
+        margin + 100,
+        yPos + 6
+      );
+
       yPos += 25;
 
       // Personal Details Section
       pdf.setFillColor(248, 249, 250); // Light gray background
-      pdf.rect(margin, yPos - 5, contentWidth, 28, 'F');
-      
+      pdf.rect(margin, yPos - 5, contentWidth, 28, "F");
+
       pdf.setFontSize(16);
       pdf.setFont("helvetica", "bold");
       pdf.setTextColor(33, 37, 41);
@@ -128,14 +134,14 @@ const About: React.FC = () => {
       pdf.setFontSize(11);
       pdf.setFont("helvetica", "normal");
       pdf.setTextColor(0, 0, 0);
-      
+
       // Two column layout
       pdf.text("Date of Birth: 17 August 1999", margin + 5, yPos);
       pdf.text("Nationality: South African", margin + 100, yPos);
       yPos += 6;
       pdf.text("Gender: Female", margin + 5, yPos);
       pdf.text("Languages: IsiZulu, English", margin + 100, yPos);
-      
+
       yPos += 20;
 
       // Objective Section
@@ -143,24 +149,25 @@ const About: React.FC = () => {
       pdf.setFont("helvetica", "bold");
       pdf.setTextColor(33, 37, 41);
       pdf.text("CAREER OBJECTIVE", margin, yPos);
-      
+
       // Underline
       pdf.setDrawColor(33, 37, 41);
       pdf.line(margin, yPos + 2, margin + 50, yPos + 2);
       yPos += 12;
-      
+
       pdf.setFontSize(11);
       pdf.setFont("helvetica", "normal");
       pdf.setTextColor(0, 0, 0);
-      const objectiveText = "To obtain a position in a growth-oriented company where I can utilize my academic knowledge and work experience to deliver quality results, face challenges with resilience, and develop into a well-rounded professional. Now specializing in software development with modern web technologies.";
+      const objectiveText =
+        "To obtain a position in a growth-oriented company where I can utilize my academic knowledge and work experience to deliver quality results, face challenges with resilience, and develop into a well-rounded professional. Now specializing in software development with modern web technologies.";
       const objectiveLines = pdf.splitTextToSize(objectiveText, contentWidth);
       pdf.text(objectiveLines, margin, yPos);
       yPos += objectiveLines.length * 5 + 15;
 
       // Technical Skills Section
       pdf.setFillColor(248, 249, 250);
-      pdf.rect(margin, yPos - 5, contentWidth, 40, 'F');
-      
+      pdf.rect(margin, yPos - 5, contentWidth, 40, "F");
+
       pdf.setFontSize(16);
       pdf.setFont("helvetica", "bold");
       pdf.setTextColor(33, 37, 41);
@@ -170,31 +177,31 @@ const About: React.FC = () => {
       pdf.setFontSize(11);
       pdf.setFont("helvetica", "normal");
       pdf.setTextColor(0, 0, 0);
-      
+
       // Skills in organized categories
       pdf.setFont("helvetica", "bold");
       pdf.text("Frontend Technologies:", margin + 5, yPos);
       pdf.setFont("helvetica", "normal");
       pdf.text("JavaScript, TypeScript, React, HTML5, CSS3", margin + 60, yPos);
       yPos += 6;
-      
+
       pdf.setFont("helvetica", "bold");
       pdf.text("Backend & APIs:", margin + 5, yPos);
       pdf.setFont("helvetica", "normal");
       pdf.text("Node.js, Express.js, Python, REST APIs", margin + 60, yPos);
       yPos += 6;
-      
+
       pdf.setFont("helvetica", "bold");
       pdf.text("Development Tools:", margin + 5, yPos);
       pdf.setFont("helvetica", "normal");
       pdf.text("Git, GitHub, VS Code, Postman, Figma", margin + 60, yPos);
       yPos += 6;
-      
+
       pdf.setFont("helvetica", "bold");
       pdf.text("Methodologies:", margin + 5, yPos);
       pdf.setFont("helvetica", "normal");
       pdf.text("Responsive Design, UI/UX Principles, Agile", margin + 60, yPos);
-      
+
       yPos += 20;
 
       // Education Section
@@ -202,7 +209,7 @@ const About: React.FC = () => {
       pdf.setFont("helvetica", "bold");
       pdf.setTextColor(33, 37, 41);
       pdf.text("EDUCATION", margin, yPos);
-      
+
       // Underline
       pdf.setDrawColor(33, 37, 41);
       pdf.line(margin, yPos + 2, margin + 35, yPos + 2);
@@ -211,19 +218,23 @@ const About: React.FC = () => {
       pdf.setFontSize(11);
       pdf.setFont("helvetica", "normal");
       pdf.setTextColor(0, 0, 0);
-      
+
       // 2024 Education
       pdf.setFont("helvetica", "bold");
       pdf.text("2024", margin, yPos);
       pdf.setFont("helvetica", "normal");
-      pdf.text("Diploma in Information and Communication Technology", margin + 25, yPos);
+      pdf.text(
+        "Diploma in Information and Communication Technology",
+        margin + 25,
+        yPos
+      );
       yPos += 5;
       pdf.text("in Business Analysis", margin + 25, yPos);
       yPos += 5;
       pdf.setFont("helvetica", "italic");
       pdf.text("Durban University of Technology (DUT)", margin + 25, yPos);
       yPos += 10;
-      
+
       // 2019 Education
       pdf.setFont("helvetica", "bold");
       pdf.text("2019", margin, yPos);
@@ -233,7 +244,7 @@ const About: React.FC = () => {
       pdf.setFont("helvetica", "italic");
       pdf.text("Ekurhuleni West TVET College", margin + 25, yPos);
       yPos += 10;
-      
+
       // 2017 Education
       pdf.setFont("helvetica", "bold");
       pdf.text("2017", margin, yPos);
@@ -255,7 +266,7 @@ const About: React.FC = () => {
       pdf.setFont("helvetica", "bold");
       pdf.setTextColor(33, 37, 41);
       pdf.text("WORK EXPERIENCE", margin, yPos);
-      
+
       // Underline
       pdf.setDrawColor(33, 37, 41);
       pdf.line(margin, yPos + 2, margin + 55, yPos + 2);
@@ -264,32 +275,48 @@ const About: React.FC = () => {
       pdf.setFontSize(11);
       pdf.setFont("helvetica", "normal");
       pdf.setTextColor(0, 0, 0);
-      
+
       // Job title and dates
       pdf.setFont("helvetica", "bold");
       pdf.text("Fieldworker", margin, yPos);
       pdf.setFont("helvetica", "normal");
       pdf.text("January 2022 - June 2022", margin + 100, yPos);
       yPos += 5;
-      
+
       pdf.setFont("helvetica", "italic");
       pdf.text("Census South Africa", margin, yPos);
       yPos += 10;
-      
+
       pdf.setFont("helvetica", "normal");
-      pdf.text("• Collected and recorded demographic data for the national census", margin + 5, yPos);
+      pdf.text(
+        "• Collected and recorded demographic data for the national census",
+        margin + 5,
+        yPos
+      );
       yPos += 5;
-      pdf.text("• Ensured data integrity and compliance with confidentiality protocols", margin + 5, yPos);
+      pdf.text(
+        "• Ensured data integrity and compliance with confidentiality protocols",
+        margin + 5,
+        yPos
+      );
       yPos += 5;
-      pdf.text("• Communicated effectively with community members and field teams", margin + 5, yPos);
+      pdf.text(
+        "• Communicated effectively with community members and field teams",
+        margin + 5,
+        yPos
+      );
       yPos += 5;
-      pdf.text("• Maintained accurate records and met daily collection targets", margin + 5, yPos);
+      pdf.text(
+        "• Maintained accurate records and met daily collection targets",
+        margin + 5,
+        yPos
+      );
       yPos += 15;
 
       // Project Experience Section
       pdf.setFillColor(248, 249, 250);
-      pdf.rect(margin, yPos - 5, contentWidth, 65, 'F');
-      
+      pdf.rect(margin, yPos - 5, contentWidth, 65, "F");
+
       pdf.setFontSize(16);
       pdf.setFont("helvetica", "bold");
       pdf.setTextColor(33, 37, 41);
@@ -299,43 +326,71 @@ const About: React.FC = () => {
       pdf.setFontSize(11);
       pdf.setFont("helvetica", "normal");
       pdf.setTextColor(0, 0, 0);
-      
+
       // Project 1
       pdf.setFont("helvetica", "bold");
       pdf.text("Job Tracker App", margin + 5, yPos);
       pdf.setFont("helvetica", "normal");
-      pdf.text("Professional job application tracking system with analytics", margin + 5, yPos + 5);
-      pdf.text("Live: https://job-tracker-app-wmdf.onrender.com/", margin + 5, yPos + 10);
+      pdf.text(
+        "Professional job application tracking system with analytics",
+        margin + 5,
+        yPos + 5
+      );
+      pdf.text(
+        "Live: https://job-tracker-app-wmdf.onrender.com/",
+        margin + 5,
+        yPos + 10
+      );
       yPos += 18;
-      
+
       // Project 2
       pdf.setFont("helvetica", "bold");
       pdf.text("Weather Application", margin + 5, yPos);
       pdf.setFont("helvetica", "normal");
-      pdf.text("Real-time weather forecasting with location-based data", margin + 5, yPos + 5);
-      pdf.text("Live: https://weather-application-3wux.onrender.com/", margin + 5, yPos + 10);
+      pdf.text(
+        "Real-time weather forecasting with location-based data",
+        margin + 5,
+        yPos + 5
+      );
+      pdf.text(
+        "Live: https://weather-application-3wux.onrender.com/",
+        margin + 5,
+        yPos + 10
+      );
       yPos += 18;
-      
+
       // Project 3
       pdf.setFont("helvetica", "bold");
       pdf.text("Shopping List App", margin + 5, yPos);
       pdf.setFont("helvetica", "normal");
-      pdf.text("Interactive shopping list manager with CRUD functionality", margin + 5, yPos + 5);
+      pdf.text(
+        "Interactive shopping list manager with CRUD functionality",
+        margin + 5,
+        yPos + 5
+      );
       yPos += 12;
-      
+
       // Project 4
       pdf.setFont("helvetica", "bold");
       pdf.text("Dictionary App", margin + 5, yPos);
       pdf.setFont("helvetica", "normal");
-      pdf.text("Comprehensive dictionary with definitions and pronunciations", margin + 5, yPos + 5);
+      pdf.text(
+        "Comprehensive dictionary with definitions and pronunciations",
+        margin + 5,
+        yPos + 5
+      );
       yPos += 12;
-      
+
       // Project 5
       pdf.setFont("helvetica", "bold");
-      pdf.text("Electrical SDS Vault", margin + 5, yPos);
+      pdf.text("Electrical SDS", margin + 5, yPos);
       pdf.setFont("helvetica", "normal");
-      pdf.text("Safety Data Sheet management for electrical components", margin + 5, yPos + 5);
-      
+      pdf.text(
+        "Safety Data Sheet management for electrical components",
+        margin + 5,
+        yPos + 5
+      );
+
       yPos += 20;
 
       // References Section
@@ -343,7 +398,7 @@ const About: React.FC = () => {
       pdf.setFont("helvetica", "bold");
       pdf.setTextColor(33, 37, 41);
       pdf.text("REFERENCES", margin, yPos);
-      
+
       // Underline
       pdf.setDrawColor(33, 37, 41);
       pdf.line(margin, yPos + 2, margin + 40, yPos + 2);
@@ -351,13 +406,13 @@ const About: React.FC = () => {
 
       pdf.setFontSize(11);
       pdf.setTextColor(0, 0, 0);
-      
+
       // Reference 1
       pdf.setFont("helvetica", "bold");
       pdf.text("Nkosithandile Nyandeni", margin, yPos);
       pdf.setFont("helvetica", "normal");
       pdf.text("Phone: 076 252 5376", margin, yPos + 5);
-      
+
       // Reference 2 (next to first)
       pdf.setFont("helvetica", "bold");
       pdf.text("Bongekile Maphisa", margin + 90, yPos);
@@ -370,14 +425,14 @@ const About: React.FC = () => {
       pdf.text("Mduduzi Buthelezi", margin + 45, yPos);
       pdf.setFont("helvetica", "normal");
       pdf.text("Phone: 064 643 2345", margin + 45, yPos + 5);
-      
+
       // Add footer with page number and date
       yPos = pdf.internal.pageSize.height - 15;
       pdf.setFontSize(8);
       pdf.setFont("helvetica", "italic");
       pdf.setTextColor(128, 128, 128);
       pdf.text("Melokuhle Maphisa - Curriculum Vitae", margin, yPos);
-      pdf.text(`Generated: ${new Date().toLocaleDateString()}`, pageWidth - margin - 40, yPos);
+    
 
       // Save the PDF
       pdf.save("Melokuhle_Maphisa_CV.pdf");

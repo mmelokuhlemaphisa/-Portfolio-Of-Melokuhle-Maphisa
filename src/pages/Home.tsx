@@ -53,7 +53,8 @@ export default function Home() {
     },
     {
       title: "Weather Application",
-      description: "Real-time weather forecasting app with location-based data and responsive design",
+      description:
+        "Real-time weather forecasting app with location-based data and responsive design",
       tech: ["JavaScript", "Weather API", "HTML5", "CSS3"],
       github: "https://github.com/mmelokuhlemaphisa/weather-application",
       live: "https://weather-application-3wux.onrender.com/",
@@ -70,7 +71,8 @@ export default function Home() {
     },
     {
       title: "Dictionary App",
-      description: "Comprehensive dictionary application with word definitions and pronunciations",
+      description:
+        "Comprehensive dictionary application with word definitions and pronunciations",
       tech: ["React", "Dictionary API", "CSS3"],
       github: "https://github.com/mmelokuhlemaphisa/dictionary-app",
       live: "#",
@@ -333,6 +335,114 @@ export default function Home() {
             </button>
           </div>
 
+          {/* Social Media Links */}
+          <div
+            style={{
+              display: "flex",
+              gap: "1.5rem",
+              justifyContent: "center",
+              marginBottom: "4rem",
+            }}
+          >
+            <a
+              href="https://github.com/mmelokuhlemaphisa"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "50px",
+                height: "50px",
+                background: "rgba(33, 37, 41, 0.1)",
+                borderRadius: "50%",
+                color: "#212529",
+                fontSize: "1.5rem",
+                textDecoration: "none",
+                transition: "all 0.3s ease",
+                border: "2px solid transparent",
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.background = "#212529";
+                e.currentTarget.style.color = "white";
+                e.currentTarget.style.transform = "translateY(-3px)";
+                e.currentTarget.style.boxShadow = "0 10px 20px rgba(0,0,0,0.2)";
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.background = "rgba(33, 37, 41, 0.1)";
+                e.currentTarget.style.color = "#212529";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
+            >
+              📚
+            </a>
+            <a
+              href="https://linkedin.com/in/melokuhle"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "50px",
+                height: "50px",
+                background: "rgba(33, 37, 41, 0.1)",
+                borderRadius: "50%",
+                color: "#212529",
+                fontSize: "1.5rem",
+                textDecoration: "none",
+                transition: "all 0.3s ease",
+                border: "2px solid transparent",
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.background = "#212529";
+                e.currentTarget.style.color = "white";
+                e.currentTarget.style.transform = "translateY(-3px)";
+                e.currentTarget.style.boxShadow = "0 10px 20px rgba(0,0,0,0.2)";
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.background = "rgba(33, 37, 41, 0.1)";
+                e.currentTarget.style.color = "#212529";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
+            >
+              💼
+            </a>
+            <a
+              href="mailto:melokuhle99@gmail.com"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "50px",
+                height: "50px",
+                background: "rgba(33, 37, 41, 0.1)",
+                borderRadius: "50%",
+                color: "#212529",
+                fontSize: "1.5rem",
+                textDecoration: "none",
+                transition: "all 0.3s ease",
+                border: "2px solid transparent",
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.background = "#212529";
+                e.currentTarget.style.color = "white";
+                e.currentTarget.style.transform = "translateY(-3px)";
+                e.currentTarget.style.boxShadow = "0 10px 20px rgba(0,0,0,0.2)";
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.background = "rgba(33, 37, 41, 0.1)";
+                e.currentTarget.style.color = "#212529";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
+            >
+              📧
+            </a>
+          </div>
+
           {/* Stats */}
           <div
             style={{
@@ -481,6 +591,7 @@ export default function Home() {
                   e.currentTarget.style.boxShadow =
                     "0 10px 30px rgba(0,0,0,0.15)";
                 }}
+                onClick={() => (window.location.href = "/about")}
               >
                 Download Resume
               </button>
@@ -722,37 +833,84 @@ export default function Home() {
                         e.currentTarget.style.background = "transparent";
                         e.currentTarget.style.transform = "translateY(0)";
                       }}
+                      onClick={() => window.open(project.github, "_blank")}
                     >
                       GitHub
                     </button>
                     <button
                       style={{
                         padding: "12px 24px",
-                        background: "#212529",
-                        color: "white",
+                        background:
+                          project.live === "#" ? "#cccccc" : "#212529",
+                        color: project.live === "#" ? "#666666" : "white",
                         border: "none",
                         borderRadius: "25px",
                         fontSize: "0.9rem",
                         fontWeight: "600",
-                        cursor: "pointer",
+                        cursor:
+                          project.live === "#" ? "not-allowed" : "pointer",
                         transition: "all 0.3s ease",
                         flex: 1,
+                        opacity: project.live === "#" ? 0.6 : 1,
                       }}
                       onMouseOver={(e) => {
-                        e.currentTarget.style.background = "#495057";
-                        e.currentTarget.style.transform = "translateY(-2px)";
+                        if (project.live !== "#") {
+                          e.currentTarget.style.background = "#495057";
+                          e.currentTarget.style.transform = "translateY(-2px)";
+                        }
                       }}
                       onMouseOut={(e) => {
-                        e.currentTarget.style.background = "#212529";
-                        e.currentTarget.style.transform = "translateY(0)";
+                        if (project.live !== "#") {
+                          e.currentTarget.style.background = "#212529";
+                          e.currentTarget.style.transform = "translateY(0)";
+                        }
                       }}
+                      onClick={() => {
+                        if (project.live !== "#") {
+                          window.open(project.live, "_blank");
+                        }
+                      }}
+                      disabled={project.live === "#"}
                     >
-                      Live Demo
+                      {project.live === "#" ? "Coming Soon" : "Live Demo"}
                     </button>
                   </div>
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* View All Projects Button */}
+          <div style={{ textAlign: "center", marginTop: "4rem" }}>
+            <button
+              style={{
+                padding: "16px 40px",
+                background: "transparent",
+                color: "#212529",
+                border: "2px solid #212529",
+                borderRadius: "50px",
+                fontSize: "1.1rem",
+                fontWeight: "600",
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+                boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.background = "#212529";
+                e.currentTarget.style.color = "white";
+                e.currentTarget.style.transform = "translateY(-3px)";
+                e.currentTarget.style.boxShadow = "0 15px 40px rgba(0,0,0,0.2)";
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.background = "transparent";
+                e.currentTarget.style.color = "#212529";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "0 10px 30px rgba(0,0,0,0.1)";
+              }}
+              onClick={() => (window.location.href = "/projects")}
+            >
+              View All Projects →
+            </button>
           </div>
         </div>
       </section>
@@ -805,6 +963,7 @@ export default function Home() {
                 background: "rgba(255,255,255,0.1)",
                 borderRadius: "15px",
                 transition: "all 0.3s ease",
+                cursor: "pointer",
               }}
               onMouseOver={(e) => {
                 e.currentTarget.style.background = "rgba(255,255,255,0.15)";
@@ -814,6 +973,12 @@ export default function Home() {
                 e.currentTarget.style.background = "rgba(255,255,255,0.1)";
                 e.currentTarget.style.transform = "translateY(0)";
               }}
+              onClick={() =>
+                window.open(
+                  "mailto:melokuhle99@gmail.com?subject=Let's Connect&body=Hi Melokuhle, I'd like to get in touch with you.",
+                  "_blank"
+                )
+              }
             >
               <h3 style={{ fontSize: "1.3rem", marginBottom: "1rem" }}>
                 📧 Email
@@ -827,6 +992,7 @@ export default function Home() {
                 background: "rgba(255,255,255,0.1)",
                 borderRadius: "15px",
                 transition: "all 0.3s ease",
+                cursor: "pointer",
               }}
               onMouseOver={(e) => {
                 e.currentTarget.style.background = "rgba(255,255,255,0.15)";
@@ -836,6 +1002,9 @@ export default function Home() {
                 e.currentTarget.style.background = "rgba(255,255,255,0.1)";
                 e.currentTarget.style.transform = "translateY(0)";
               }}
+              onClick={() =>
+                window.open("https://linkedin.com/in/melokuhle", "_blank")
+              }
             >
               <h3 style={{ fontSize: "1.3rem", marginBottom: "1rem" }}>
                 💼 LinkedIn
@@ -849,6 +1018,7 @@ export default function Home() {
                 background: "rgba(255,255,255,0.1)",
                 borderRadius: "15px",
                 transition: "all 0.3s ease",
+                cursor: "pointer",
               }}
               onMouseOver={(e) => {
                 e.currentTarget.style.background = "rgba(255,255,255,0.15)";
@@ -858,11 +1028,16 @@ export default function Home() {
                 e.currentTarget.style.background = "rgba(255,255,255,0.1)";
                 e.currentTarget.style.transform = "translateY(0)";
               }}
+              onClick={() =>
+                window.open("https://github.com/mmelokuhlemaphisa", "_blank")
+              }
             >
               <h3 style={{ fontSize: "1.3rem", marginBottom: "1rem" }}>
                 📱 GitHub
               </h3>
-              <p style={{ opacity: 0.8 }}>https://github.com/mmelokuhlemaphisa</p>
+              <p style={{ opacity: 0.8 }}>
+                https://github.com/mmelokuhlemaphisa
+              </p>
             </div>
           </div>
 
@@ -891,6 +1066,7 @@ export default function Home() {
               e.currentTarget.style.boxShadow =
                 "0 10px 30px rgba(255,255,255,0.2)";
             }}
+            onClick={() => window.open("/contact", "_blank")}
           >
             Send Message
           </button>
