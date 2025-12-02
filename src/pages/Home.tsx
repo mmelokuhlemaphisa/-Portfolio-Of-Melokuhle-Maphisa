@@ -315,7 +315,6 @@ export default function Home() {
             </button>
           </div>
 
-
           {/* Social Media Links */}
           <div
             style={{
@@ -325,7 +324,7 @@ export default function Home() {
               justifyContent: "center",
               margin: "0 auto 4rem",
               maxWidth: "600px",
-              padding: "0 1rem"
+              padding: "0 1rem",
             }}
           >
             <a
@@ -346,7 +345,7 @@ export default function Home() {
                 transition: "all 0.3s ease",
                 border: "1px solid rgba(33, 37, 41, 0.1)",
                 margin: "0 0.5rem 1rem",
-                minWidth: "140px"
+                minWidth: "140px",
               }}
               onMouseOver={(e) => {
                 e.currentTarget.style.background = "#212529";
@@ -383,14 +382,15 @@ export default function Home() {
                 transition: "all 0.3s ease",
                 border: "1px solid rgba(33, 37, 41, 0.1)",
                 margin: "0 0.5rem 1rem",
-                minWidth: "140px"
+                minWidth: "140px",
               }}
               onMouseOver={(e) => {
                 e.currentTarget.style.background = "#0A66C2";
                 e.currentTarget.style.color = "white";
                 e.currentTarget.style.borderColor = "#0A66C2";
                 e.currentTarget.style.transform = "translateY(-2px)";
-                e.currentTarget.style.boxShadow = "0 5px 15px rgba(10, 102, 194, 0.2)";
+                e.currentTarget.style.boxShadow =
+                  "0 5px 15px rgba(10, 102, 194, 0.2)";
               }}
               onMouseOut={(e) => {
                 e.currentTarget.style.background = "rgba(33, 37, 41, 0.05)";
@@ -404,7 +404,6 @@ export default function Home() {
             >
               <span style={{ marginRight: "8px" }}>💼</span> LinkedIn
             </a>
-      
           </div>
 
           {/* Stats */}
@@ -422,8 +421,7 @@ export default function Home() {
               border: "1px solid rgba(255,255,255,0.2)",
             }}
           >
-          
-              <div style={{ textAlign: "center" }}>
+            <div style={{ textAlign: "center" }}>
               <div
                 style={{
                   fontSize: "3rem",
@@ -472,69 +470,82 @@ export default function Home() {
               fontWeight: "700",
               marginBottom: "1rem",
               color: "#212529",
-              textAlign: "center"
+              textAlign: "center",
             }}
           >
             About Me
           </h2>
-          <p 
+          <p
             style={{
               fontSize: "1.25rem",
               color: "#6c757d",
               textAlign: "center",
               maxWidth: "800px",
               margin: "0 auto 4rem",
-              lineHeight: "1.7"
+              lineHeight: "1.7",
             }}
           >
-            I'm a passionate software developer with expertise in modern web technologies
+            I'm a passionate software developer with expertise in modern web
+            technologies
           </p>
 
-          <div style={{ 
-            display: "flex",
-            flexDirection: "column",
-            gap: "4rem",
-            marginBottom: "4rem"
-          }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "4rem",
+              marginBottom: "4rem",
+            }}
+          >
             <div>
-              <h3 style={{
-                fontSize: "1.5rem",
-                fontWeight: "600",
-                marginBottom: "2rem",
-                color: "#212529"
-              }}>
+              <h3
+                style={{
+                  fontSize: "1.5rem",
+                  fontWeight: "600",
+                  marginBottom: "2rem",
+                  color: "#212529",
+                }}
+              >
                 Professional Summary
               </h3>
-              <p style={{
-                fontSize: "1.1rem",
-                lineHeight: "1.8",
-                color: "#495057",
-                marginBottom: "2rem",
-                maxWidth: "800px"
-              }}>
-                I'm a dedicated software developer with a strong foundation in modern web technologies. 
-                My expertise includes building responsive, user-friendly applications using React, 
-                TypeScript, and Node.js. I'm passionate about writing clean, efficient code and 
-                continuously learning new technologies to stay current with industry trends.
+              <p
+                style={{
+                  fontSize: "1.1rem",
+                  lineHeight: "1.8",
+                  color: "#495057",
+                  marginBottom: "2rem",
+                  maxWidth: "800px",
+                }}
+              >
+                I'm a dedicated software developer with a strong foundation in
+                modern web technologies. My expertise includes building
+                responsive, user-friendly applications using React, TypeScript,
+                and Node.js. I'm passionate about writing clean, efficient code
+                and continuously learning new technologies to stay current with
+                industry trends.
               </p>
             </div>
 
             <div>
-              <h3 style={{
-                fontSize: "1.5rem",
-                fontWeight: "600",
-                marginBottom: "2rem",
-                color: "#212529"
-              }}>
+              <h3
+                style={{
+                  fontSize: "1.5rem",
+                  fontWeight: "600",
+                  marginBottom: "2rem",
+                  color: "#212529",
+                }}
+              >
                 My Skills
               </h3>
-              <div style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-                gap: "1.5rem"
-              }}>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+                  gap: "1.5rem",
+                }}
+              >
                 {skills.map((skill, index) => (
-                  <div 
+                  <div
                     key={index}
                     style={{
                       background: "white",
@@ -542,44 +553,54 @@ export default function Home() {
                       borderRadius: "12px",
                       boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
                       transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                      textAlign: "center"
+                      textAlign: "center",
                     }}
                     onMouseOver={(e) => {
                       e.currentTarget.style.transform = "translateY(-5px)";
-                      e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.1)";
+                      e.currentTarget.style.boxShadow =
+                        "0 8px 20px rgba(0,0,0,0.1)";
                     }}
                     onMouseOut={(e) => {
                       e.currentTarget.style.transform = "translateY(0)";
-                      e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.05)";
+                      e.currentTarget.style.boxShadow =
+                        "0 4px 12px rgba(0,0,0,0.05)";
                     }}
                   >
-                    <div style={{
-                      fontSize: "2rem",
-                      marginBottom: "0.75rem"
-                    }}>
+                    <div
+                      style={{
+                        fontSize: "2rem",
+                        marginBottom: "0.75rem",
+                      }}
+                    >
                       {skill.icon}
                     </div>
-                    <h4 style={{
-                      fontSize: "1.1rem",
-                      fontWeight: "600",
-                      marginBottom: "0.5rem",
-                      color: "#212529"
-                    }}>
+                    <h4
+                      style={{
+                        fontSize: "1.1rem",
+                        fontWeight: "600",
+                        marginBottom: "0.5rem",
+                        color: "#212529",
+                      }}
+                    >
                       {skill.name}
                     </h4>
-                    <div style={{
-                      height: "6px",
-                      background: "#e9ecef",
-                      borderRadius: "3px",
-                      overflow: "hidden",
-                      marginTop: "0.75rem"
-                    }}>
-                      <div style={{
-                        width: `${skill.level}%`,
-                        height: "100%",
-                        background: "#212529",
-                        borderRadius: "3px"
-                      }} />
+                    <div
+                      style={{
+                        height: "6px",
+                        background: "#e9ecef",
+                        borderRadius: "3px",
+                        overflow: "hidden",
+                        marginTop: "0.75rem",
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: `${skill.level}%`,
+                          height: "100%",
+                          background: "#212529",
+                          borderRadius: "3px",
+                        }}
+                      />
                     </div>
                   </div>
                 ))}
@@ -863,7 +884,6 @@ export default function Home() {
               marginBottom: "3rem",
             }}
           >
-
             <div
               style={{
                 padding: "2rem",
@@ -881,13 +901,18 @@ export default function Home() {
                 e.currentTarget.style.transform = "translateY(0)";
               }}
               onClick={() =>
-                window.open("mailto:melokuhlemaphisa99@gmail.com", "_blank")
+                window.open(
+                  "https://www.linkedin.com/in/melokuhle-maphisa-04aa4b348/",
+                  "_blank"
+                )
               }
             >
               <h3 style={{ fontSize: "1.3rem", marginBottom: "1rem" }}>
-                ✉️ Email Me
+                💼 LinkIn
               </h3>
-              <p style={{ opacity: 0.8 }}>melokuhlemaphisa99@gmail.com</p>
+              <p style={{ opacity: 0.8 }}>
+                https://www.linkedin.com/in/melokuhle-maphisa-04aa4b348/
+              </p>
             </div>
 
             <div

@@ -1,4 +1,4 @@
-import React from "react";
+
 import { useNavigate } from "react-router-dom";
 
 interface Project {
@@ -99,7 +99,7 @@ const Project = () => {
         "Safety compliance tracking",
         "User authentication and authorization",
       ],
-      status: "in-development",
+      status: "completed",
     },
   ];
 
