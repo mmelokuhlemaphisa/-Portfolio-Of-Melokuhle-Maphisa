@@ -10,12 +10,6 @@ interface Skill {
   icon: string;
 }
 
-interface Achievement {
-  title: string;
-  description: string;
-  icon: string;
-}
-
 // Data arrays
 const skills: Skill[] = [
   { name: "JavaScript", level: 90, icon: "🟨" },
@@ -28,32 +22,6 @@ const skills: Skill[] = [
   { name: "Python", level: 75, icon: "🐍" },
 ];
 
-const achievements: Achievement[] = [
-  {
-    title: "7+ Projects Completed",
-    description:
-      "Successfully delivered diverse web applications from concept to deployment",
-    icon: "🚀",
-  },
-  {
-    title: "100% Client Satisfaction",
-    description:
-      "Maintained excellent client relationships with consistent quality delivery",
-    icon: "⭐",
-  },
-  {
-    title: "Open Source Contributor",
-    description:
-      "Active participation in community projects and knowledge sharing",
-    icon: "💻",
-  },
-  {
-    title: "Continuous Learner",
-    description:
-      "Always exploring new technologies and improving development skills",
-    icon: "📚",
-  },
-];
 
 const About: React.FC = () => {
   const [isDownloading, setIsDownloading] = useState(false);
