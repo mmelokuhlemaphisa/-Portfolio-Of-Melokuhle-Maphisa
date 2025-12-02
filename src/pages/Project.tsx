@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 interface Project {
   id: number;
@@ -8,12 +9,11 @@ interface Project {
   githubUrl: string;
   liveUrl: string;
   features: string[];
-  category: string;
   status: string;
 }
 
-const Project: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState<string>("all");
+const Project = () => {
+  const navigate = useNavigate();
 
   const projects: Project[] = [
     {
@@ -31,7 +31,6 @@ const Project: React.FC = () => {
         "User authentication",
         "Responsive design",
       ],
-      category: "web-app",
       status: "completed",
     },
     {
@@ -49,7 +48,6 @@ const Project: React.FC = () => {
         "Weather maps",
         "Mobile responsive",
       ],
-      category: "web-app",
       status: "completed",
     },
     {
@@ -67,7 +65,6 @@ const Project: React.FC = () => {
         "Progress tracking",
         "Export lists",
       ],
-      category: "mobile-web",
       status: "completed",
     },
     {
@@ -85,7 +82,6 @@ const Project: React.FC = () => {
         "Pronunciation guides",
         "Redux state management",
       ],
-      category: "web-app",
       status: "completed",
     },
     {
@@ -103,21 +99,9 @@ const Project: React.FC = () => {
         "Safety compliance tracking",
         "User authentication and authorization",
       ],
-      category: "web-app",
       status: "in-development",
     },
   ];
-
-  const categories = [
-    { id: "all", name: "All Projects" },
-    { id: "web-app", name: "Web Applications" },
-    { id: "mobile-web", name: "Mobile Web" },
-  ];
-
-  const filteredProjects =
-    activeFilter === "all"
-      ? projects
-      : projects.filter((project) => project.category === activeFilter);
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -144,135 +128,83 @@ const Project: React.FC = () => {
     <div
       style={{
         minHeight: "100vh",
-        backgroundColor: "#0a0a0a",
-        color: "white",
-        padding: "80px 20px 40px",
+        backgroundColor: "#ffffff",
+        color: "#333333",
+        padding: "60px 20px 40px",
       }}
     >
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: "60px" }}>
+        <div style={{ textAlign: "center", marginBottom: "40px" }}>
           <h1
             style={{
-              fontSize: "3.5rem",
-              fontWeight: "bold",
-              marginBottom: "20px",
-              background: "linear-gradient(135deg, #ffffff, #888888)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
+              fontSize: "2.8rem",
+              fontWeight: "700",
+              marginBottom: "15px",
+              color: "#212529",
+              letterSpacing: "-0.5px",
             }}
           >
             My Projects
           </h1>
           <p
             style={{
-              fontSize: "1.2rem",
-              color: "#cccccc",
-              maxWidth: "600px",
+              fontSize: "1.1rem",
+              color: "#6c757d",
+              maxWidth: "700px",
               margin: "0 auto",
+              lineHeight: "1.6",
             }}
           >
-            Explore my portfolio of web applications and mobile solutions. Each
-            project represents a unique challenge solved with modern
-            technologies.
+            A collection of my work showcasing my skills in web development and problem-solving.
+            Each project demonstrates my ability to create functional and user-friendly applications.
           </p>
-        </div>
-
-        {/* Filter Tabs */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "50px",
-            flexWrap: "wrap",
-            gap: "10px",
-          }}
-        >
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => setActiveFilter(category.id)}
-              style={{
-                padding: "12px 24px",
-                backgroundColor:
-                  activeFilter === category.id ? "white" : "transparent",
-                color: activeFilter === category.id ? "black" : "white",
-                border: "2px solid white",
-                borderRadius: "25px",
-                cursor: "pointer",
-                fontSize: "1rem",
-                fontWeight: "500",
-                transition: "all 0.3s ease",
-                transform:
-                  activeFilter === category.id ? "translateY(-2px)" : "none",
-                boxShadow:
-                  activeFilter === category.id
-                    ? "0 5px 15px rgba(255,255,255,0.3)"
-                    : "none",
-              }}
-              onMouseEnter={(e) => {
-                if (activeFilter !== category.id) {
-                  e.currentTarget.style.backgroundColor = "#333333";
-                  e.currentTarget.style.transform = "translateY(-2px)";
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (activeFilter !== category.id) {
-                  e.currentTarget.style.backgroundColor = "transparent";
-                  e.currentTarget.style.transform = "none";
-                }
-              }}
-            >
-              {category.name}
-            </button>
-          ))}
         </div>
 
         {/* Projects Grid */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
             gap: "30px",
+            padding: "0 15px",
           }}
         >
-          {filteredProjects.map((project) => (
+          {projects.map((project) => (
             <div
               key={project.id}
               style={{
-                backgroundColor: "#1a1a1a",
-                border: "1px solid #333333",
-                borderRadius: "15px",
-                padding: "30px",
+                backgroundColor: "#ffffff",
+                border: "1px solid #e9ecef",
+                borderRadius: "12px",
+                padding: "25px",
                 transition: "all 0.3s ease",
-                cursor: "pointer",
                 position: "relative",
                 overflow: "hidden",
+                boxShadow: "0 4px 6px rgba(0,0,0,0.05)",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-10px)";
-                e.currentTarget.style.boxShadow =
-                  "0 20px 40px rgba(255,255,255,0.1)";
-                e.currentTarget.style.borderColor = "#666666";
+                e.currentTarget.style.transform = "translateY(-5px)";
+                e.currentTarget.style.boxShadow = "0 10px 25px rgba(0,0,0,0.1)";
+                e.currentTarget.style.borderColor = "#dee2e6";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "none";
-                e.currentTarget.style.borderColor = "#333333";
+                e.currentTarget.style.boxShadow = "0 4px 6px rgba(0,0,0,0.05)";
+                e.currentTarget.style.borderColor = "#e9ecef";
               }}
             >
               {/* Status Badge */}
               <div
                 style={{
                   position: "absolute",
-                  top: "20px",
-                  right: "20px",
+                  top: "15px",
+                  right: "15px",
                   backgroundColor: getStatusColor(project.status),
                   color: "white",
-                  padding: "4px 12px",
-                  borderRadius: "20px",
-                  fontSize: "0.8rem",
+                  padding: "3px 10px",
+                  borderRadius: "12px",
+                  fontSize: "0.75rem",
                   fontWeight: "500",
                   textTransform: "capitalize",
                 }}
@@ -283,11 +215,11 @@ const Project: React.FC = () => {
               {/* Project Content */}
               <h3
                 style={{
-                  fontSize: "1.5rem",
-                  fontWeight: "bold",
-                  marginBottom: "15px",
-                  color: "white",
-                  marginRight: "100px",
+                  fontSize: "1.4rem",
+                  fontWeight: "600",
+                  marginBottom: "12px",
+                  color: "#212529",
+                  marginRight: "80px",
                 }}
               >
                 {project.title}
@@ -295,8 +227,8 @@ const Project: React.FC = () => {
 
               <p
                 style={{
-                  color: "#cccccc",
-                  marginBottom: "20px",
+                  color: "#6c757d",
+                  marginBottom: "18px",
                   lineHeight: "1.6",
                   fontSize: "0.95rem",
                 }}
@@ -310,7 +242,7 @@ const Project: React.FC = () => {
                   style={{
                     fontSize: "1rem",
                     marginBottom: "10px",
-                    color: "white",
+                    color: "#2c3e50",
                     fontWeight: "600",
                   }}
                 >
@@ -321,8 +253,8 @@ const Project: React.FC = () => {
                     <span
                       key={index}
                       style={{
-                        backgroundColor: "#333333",
-                        color: "white",
+                        backgroundColor: "#edf2f7",
+                        color: "#2c3e50",
                         padding: "4px 12px",
                         borderRadius: "15px",
                         fontSize: "0.8rem",
@@ -341,7 +273,7 @@ const Project: React.FC = () => {
                   style={{
                     fontSize: "1rem",
                     marginBottom: "10px",
-                    color: "white",
+                    color: "#2c3e50",
                     fontWeight: "600",
                   }}
                 >
@@ -352,20 +284,21 @@ const Project: React.FC = () => {
                     listStyle: "none",
                     padding: 0,
                     margin: 0,
-                    color: "#cccccc",
+                    color: "#4a5568",
                   }}
                 >
                   {project.features.slice(0, 3).map((feature, index) => (
                     <li
                       key={index}
                       style={{
-                        marginBottom: "5px",
-                        fontSize: "0.9rem",
+                        marginBottom: "8px",
+                        fontSize: "0.95rem",
                         display: "flex",
                         alignItems: "center",
+                        lineHeight: "1.5",
                       }}
                     >
-                      <span style={{ color: "white", marginRight: "8px" }}>
+                      <span style={{ color: "#4a5568", marginRight: "10px" }}>
                         •
                       </span>
                       {feature}
@@ -388,8 +321,8 @@ const Project: React.FC = () => {
                     flex: 1,
                     padding: "12px",
                     backgroundColor: "transparent",
-                    color: "white",
-                    border: "2px solid white",
+                    color: "#2c3e50",
+                    border: "2px solid #2c3e50",
                     borderRadius: "8px",
                     cursor: "pointer",
                     fontSize: "0.9rem",
@@ -397,14 +330,16 @@ const Project: React.FC = () => {
                     transition: "all 0.3s ease",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "white";
-                    e.currentTarget.style.color = "black";
+                    e.currentTarget.style.backgroundColor = "#2c3e50";
+                    e.currentTarget.style.color = "white";
                     e.currentTarget.style.transform = "translateY(-2px)";
+                    e.currentTarget.style.borderColor = "#2c3e50";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.backgroundColor = "transparent";
-                    e.currentTarget.style.color = "white";
+                    e.currentTarget.style.color = "#2c3e50";
                     e.currentTarget.style.transform = "translateY(0)";
+                    e.currentTarget.style.borderColor = "#2c3e50";
                   }}
                 >
                   View Code
@@ -417,8 +352,8 @@ const Project: React.FC = () => {
                     flex: 1,
                     padding: "12px",
                     backgroundColor:
-                      project.liveUrl === "#" ? "#333333" : "white",
-                    color: project.liveUrl === "#" ? "#666666" : "black",
+                      project.liveUrl === "#" ? "#e2e8f0" : "#2c3e50",
+                    color: project.liveUrl === "#" ? "#4a5568" : "white",
                     border: "none",
                     borderRadius: "8px",
                     cursor: project.liveUrl === "#" ? "not-allowed" : "pointer",
@@ -429,14 +364,16 @@ const Project: React.FC = () => {
                   }}
                   onMouseEnter={(e) => {
                     if (project.liveUrl !== "#") {
-                      e.currentTarget.style.backgroundColor = "#f0f0f0";
+                      e.currentTarget.style.backgroundColor = "#1a365d";
                       e.currentTarget.style.transform = "translateY(-2px)";
+                      e.currentTarget.style.color = "white";
                     }
                   }}
                   onMouseLeave={(e) => {
                     if (project.liveUrl !== "#") {
-                      e.currentTarget.style.backgroundColor = "white";
+                      e.currentTarget.style.backgroundColor = "#2c3e50";
                       e.currentTarget.style.transform = "translateY(0)";
+                      e.currentTarget.style.color = "white";
                     }
                   }}
                 >
@@ -448,35 +385,35 @@ const Project: React.FC = () => {
         </div>
 
         {/* Back to Home */}
-        <div style={{ textAlign: "center", marginTop: "60px" }}>
+        <div style={{ textAlign: "center", marginTop: "50px" }}>
           <button
-            onClick={() => (window.location.href = "/")}
+            onClick={() => navigate("/")}
             style={{
-              padding: "15px 30px",
-              backgroundColor: "transparent",
-              color: "white",
-              border: "2px solid white",
-              borderRadius: "25px",
+              padding: "12px 25px",
+              backgroundColor: "#f8f9fa",
+              color: "#495057",
+              border: "1px solid #dee2e6",
+              borderRadius: "8px",
               cursor: "pointer",
-              fontSize: "1.1rem",
+              fontSize: "1rem",
               fontWeight: "500",
-              transition: "all 0.3s ease",
+              transition: "all 0.2s ease",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "white";
-              e.currentTarget.style.color = "black";
-              e.currentTarget.style.transform = "translateY(-3px)";
-              e.currentTarget.style.boxShadow =
-                "0 10px 20px rgba(255,255,255,0.3)";
+              e.currentTarget.style.backgroundColor = "#e9ecef";
+              e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "transparent";
-              e.currentTarget.style.color = "white";
+              e.currentTarget.style.backgroundColor = "#f8f9fa";
               e.currentTarget.style.transform = "translateY(0)";
               e.currentTarget.style.boxShadow = "none";
             }}
           >
-            ← Back to Home
+            <span>←</span> Back to Home
           </button>
         </div>
       </div>

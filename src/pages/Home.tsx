@@ -18,10 +18,8 @@ interface Project {
 }
 
 export default function Home() {
-  const [displayText, setDisplayText] = useState("");
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
+  
   const words = [
     "Full-Stack Developer",
     "Problem Solver",
@@ -29,6 +27,8 @@ export default function Home() {
     "Creative Thinker",
     "Tech Innovator",
   ];
+  
+  const currentWord = words[currentWordIndex];
 
   const skills: Skill[] = [
     { name: "React", level: 90, icon: "⚛️" },
@@ -49,7 +49,7 @@ export default function Home() {
       tech: ["React", "Node.js", "MongoDB", "CSS3"],
       github: "https://github.com/mmelokuhlemaphisa/job-tracker-app",
       live: "https://job-tracker-app-wmdf.onrender.com/",
-      image: "�",
+      image: "💼",
     },
     {
       title: "Weather Application",
@@ -90,32 +90,12 @@ export default function Home() {
   ];
 
   useEffect(() => {
-    const typeEffect = () => {
-      const currentWord = words[currentWordIndex];
-
-      if (!isDeleting) {
-        if (displayText.length < currentWord.length) {
-          setDisplayText(currentWord.substring(0, displayText.length + 1));
-        } else {
-          setTimeout(() => setIsDeleting(true), 2000);
-          return;
-        }
-      } else {
-        if (displayText.length > 0) {
-          setDisplayText(currentWord.substring(0, displayText.length - 1));
-        } else {
-          setIsDeleting(false);
-          setCurrentWordIndex((prev) => (prev + 1) % words.length);
-          return;
-        }
-      }
-
-      setTimeout(typeEffect, isDeleting ? 100 : 150);
-    };
-
-    const timer = setTimeout(typeEffect, 200);
-    return () => clearTimeout(timer);
-  }, [displayText, isDeleting, currentWordIndex, words]);
+    const timer = setInterval(() => {
+      setCurrentWordIndex((prev) => (prev + 1) % words.length);
+    }, 2000);
+    
+    return () => clearInterval(timer);
+  }, [words.length]);
 
   return (
     <div
@@ -244,7 +224,7 @@ export default function Home() {
                 textAlign: "left",
               }}
             >
-              {displayText}
+              {currentWord}
             </span>
           </div>
 
@@ -335,13 +315,17 @@ export default function Home() {
             </button>
           </div>
 
+
           {/* Social Media Links */}
           <div
             style={{
               display: "flex",
-              gap: "1.5rem",
+              flexWrap: "wrap",
+              gap: "1rem",
               justifyContent: "center",
-              marginBottom: "4rem",
+              margin: "0 auto 4rem",
+              maxWidth: "600px",
+              padding: "0 1rem"
             }}
           >
             <a
@@ -349,98 +333,78 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                display: "flex",
+                display: "inline-flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "50px",
-                height: "50px",
-                background: "rgba(33, 37, 41, 0.1)",
-                borderRadius: "50%",
+                padding: "0.8rem 1.5rem",
+                background: "rgba(33, 37, 41, 0.05)",
+                borderRadius: "50px",
                 color: "#212529",
-                fontSize: "1.5rem",
+                fontSize: "1rem",
+                fontWeight: "500",
                 textDecoration: "none",
                 transition: "all 0.3s ease",
-                border: "2px solid transparent",
+                border: "1px solid rgba(33, 37, 41, 0.1)",
+                margin: "0 0.5rem 1rem",
+                minWidth: "140px"
               }}
               onMouseOver={(e) => {
                 e.currentTarget.style.background = "#212529";
                 e.currentTarget.style.color = "white";
-                e.currentTarget.style.transform = "translateY(-3px)";
-                e.currentTarget.style.boxShadow = "0 10px 20px rgba(0,0,0,0.2)";
+                e.currentTarget.style.transform = "translateY(-2px)";
+                e.currentTarget.style.boxShadow = "0 5px 15px rgba(0,0,0,0.1)";
               }}
               onMouseOut={(e) => {
-                e.currentTarget.style.background = "rgba(33, 37, 41, 0.1)";
+                e.currentTarget.style.background = "rgba(33, 37, 41, 0.05)";
                 e.currentTarget.style.color = "#212529";
                 e.currentTarget.style.transform = "translateY(0)";
                 e.currentTarget.style.boxShadow = "none";
               }}
+              title="View my GitHub profile"
+              aria-label="GitHub Profile"
             >
-              📚
+              <span style={{ marginRight: "8px" }}>📚</span> GitHub
             </a>
             <a
-              href="https://linkedin.com/in/melokuhle"
+              href="https://www.linkedin.com/in/melokuhle-maphisa-04aa4b348/"
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                display: "flex",
+                display: "inline-flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "50px",
-                height: "50px",
-                background: "rgba(33, 37, 41, 0.1)",
-                borderRadius: "50%",
+                padding: "0.8rem 1.5rem",
+                background: "rgba(33, 37, 41, 0.05)",
+                borderRadius: "50px",
                 color: "#212529",
-                fontSize: "1.5rem",
+                fontSize: "1rem",
+                fontWeight: "500",
                 textDecoration: "none",
                 transition: "all 0.3s ease",
-                border: "2px solid transparent",
+                border: "1px solid rgba(33, 37, 41, 0.1)",
+                margin: "0 0.5rem 1rem",
+                minWidth: "140px"
               }}
               onMouseOver={(e) => {
-                e.currentTarget.style.background = "#212529";
+                e.currentTarget.style.background = "#0A66C2";
                 e.currentTarget.style.color = "white";
-                e.currentTarget.style.transform = "translateY(-3px)";
-                e.currentTarget.style.boxShadow = "0 10px 20px rgba(0,0,0,0.2)";
+                e.currentTarget.style.borderColor = "#0A66C2";
+                e.currentTarget.style.transform = "translateY(-2px)";
+                e.currentTarget.style.boxShadow = "0 5px 15px rgba(10, 102, 194, 0.2)";
               }}
               onMouseOut={(e) => {
-                e.currentTarget.style.background = "rgba(33, 37, 41, 0.1)";
+                e.currentTarget.style.background = "rgba(33, 37, 41, 0.05)";
                 e.currentTarget.style.color = "#212529";
+                e.currentTarget.style.borderColor = "rgba(33, 37, 41, 0.1)";
                 e.currentTarget.style.transform = "translateY(0)";
                 e.currentTarget.style.boxShadow = "none";
               }}
+              title="Connect on LinkedIn"
+              aria-label="LinkedIn Profile"
             >
-              💼
+              <span style={{ marginRight: "8px" }}>💼</span> LinkedIn
             </a>
-            <a
-              href="mailto:melokuhle99@gmail.com"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "50px",
-                height: "50px",
-                background: "rgba(33, 37, 41, 0.1)",
-                borderRadius: "50%",
-                color: "#212529",
-                fontSize: "1.5rem",
-                textDecoration: "none",
-                transition: "all 0.3s ease",
-                border: "2px solid transparent",
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.background = "#212529";
-                e.currentTarget.style.color = "white";
-                e.currentTarget.style.transform = "translateY(-3px)";
-                e.currentTarget.style.boxShadow = "0 10px 20px rgba(0,0,0,0.2)";
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.background = "rgba(33, 37, 41, 0.1)";
-                e.currentTarget.style.color = "#212529";
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "none";
-              }}
-            >
-              📧
-            </a>
+      
           </div>
 
           {/* Stats */}
@@ -458,7 +422,8 @@ export default function Home() {
               border: "1px solid rgba(255,255,255,0.2)",
             }}
           >
-            <div style={{ textAlign: "center" }}>
+          
+              <div style={{ textAlign: "center" }}>
               <div
                 style={{
                   fontSize: "3rem",
@@ -467,22 +432,7 @@ export default function Home() {
                   marginBottom: "0.5rem",
                 }}
               >
-                3+
-              </div>
-              <div style={{ color: "#6c757d", fontWeight: "500" }}>
-                Years Experience
-              </div>
-            </div>
-            <div style={{ textAlign: "center" }}>
-              <div
-                style={{
-                  fontSize: "3rem",
-                  fontWeight: "800",
-                  color: "#212529",
-                  marginBottom: "0.5rem",
-                }}
-              >
-                15+
+                7+
               </div>
               <div style={{ color: "#6c757d", fontWeight: "500" }}>
                 Projects Completed
@@ -515,169 +465,125 @@ export default function Home() {
           background: "#f8f9fa",
         }}
       >
-        <div
-          style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}
-        >
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <h2
             style={{
               fontSize: "3rem",
               fontWeight: "700",
-              marginBottom: "3rem",
+              marginBottom: "1rem",
               color: "#212529",
+              textAlign: "center"
             }}
           >
             About Me
           </h2>
-
-          <div
+          <p 
             style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "4rem",
-              alignItems: "center",
-              marginBottom: "4rem",
+              fontSize: "1.25rem",
+              color: "#6c757d",
+              textAlign: "center",
+              maxWidth: "800px",
+              margin: "0 auto 4rem",
+              lineHeight: "1.7"
             }}
           >
-            <div style={{ textAlign: "left" }}>
-              <p
-                style={{
-                  fontSize: "1.2rem",
-                  lineHeight: "1.8",
-                  color: "#495057",
-                  marginBottom: "2rem",
-                }}
-              >
-                I'm a passionate software developer with over 3 years of
-                experience creating web applications that solve real-world
-                problems. I specialize in modern JavaScript frameworks and love
-                working on both frontend and backend development.
-              </p>
-              <p
-                style={{
-                  fontSize: "1.2rem",
-                  lineHeight: "1.8",
-                  color: "#495057",
-                  marginBottom: "2rem",
-                }}
-              >
-                When I'm not coding, you can find me exploring new technologies,
-                contributing to open-source projects, or sharing knowledge with
-                the developer community. I believe in continuous learning and
-                staying updated with the latest industry trends.
-              </p>
+            I'm a passionate software developer with expertise in modern web technologies
+          </p>
 
-              <button
-                style={{
-                  padding: "14px 32px",
-                  background: "#212529",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "50px",
-                  fontSize: "1.1rem",
-                  fontWeight: "600",
-                  cursor: "pointer",
-                  transition: "all 0.3s ease",
-                  boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.background = "#495057";
-                  e.currentTarget.style.transform = "translateY(-3px)";
-                  e.currentTarget.style.boxShadow =
-                    "0 15px 40px rgba(0,0,0,0.25)";
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.background = "#212529";
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow =
-                    "0 10px 30px rgba(0,0,0,0.15)";
-                }}
-                onClick={() => (window.location.href = "/about")}
-              >
-                Download Resume
-              </button>
+          <div style={{ 
+            display: "flex",
+            flexDirection: "column",
+            gap: "4rem",
+            marginBottom: "4rem"
+          }}>
+            <div>
+              <h3 style={{
+                fontSize: "1.5rem",
+                fontWeight: "600",
+                marginBottom: "2rem",
+                color: "#212529"
+              }}>
+                Professional Summary
+              </h3>
+              <p style={{
+                fontSize: "1.1rem",
+                lineHeight: "1.8",
+                color: "#495057",
+                marginBottom: "2rem",
+                maxWidth: "800px"
+              }}>
+                I'm a dedicated software developer with a strong foundation in modern web technologies. 
+                My expertise includes building responsive, user-friendly applications using React, 
+                TypeScript, and Node.js. I'm passionate about writing clean, efficient code and 
+                continuously learning new technologies to stay current with industry trends.
+              </p>
             </div>
 
-            <div
-              style={{
+            <div>
+              <h3 style={{
+                fontSize: "1.5rem",
+                fontWeight: "600",
+                marginBottom: "2rem",
+                color: "#212529"
+              }}>
+                My Skills
+              </h3>
+              <div style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(2, 1fr)",
-                gap: "1.5rem",
-              }}
-            >
-              {skills.map((skill, index) => (
-                <div
-                  key={index}
-                  style={{
-                    background: "white",
-                    padding: "2rem",
-                    borderRadius: "15px",
-                    boxShadow: "0 5px 20px rgba(0,0,0,0.08)",
-                    transition: "all 0.3s ease",
-                    cursor: "pointer",
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.transform = "translateY(-5px)";
-                    e.currentTarget.style.boxShadow =
-                      "0 15px 40px rgba(0,0,0,0.15)";
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.transform = "translateY(0)";
-                    e.currentTarget.style.boxShadow =
-                      "0 5px 20px rgba(0,0,0,0.08)";
-                  }}
-                >
-                  <div
+                gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+                gap: "1.5rem"
+              }}>
+                {skills.map((skill, index) => (
+                  <div 
+                    key={index}
                     style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "1rem",
-                      marginBottom: "1rem",
+                      background: "white",
+                      padding: "1.5rem",
+                      borderRadius: "12px",
+                      boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
+                      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                      textAlign: "center"
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.transform = "translateY(-5px)";
+                      e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.1)";
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.transform = "translateY(0)";
+                      e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.05)";
                     }}
                   >
-                    <span style={{ fontSize: "2rem" }}>{skill.icon}</span>
-                    <h3
-                      style={{
-                        fontSize: "1.1rem",
-                        fontWeight: "600",
-                        color: "#212529",
-                        margin: 0,
-                      }}
-                    >
+                    <div style={{
+                      fontSize: "2rem",
+                      marginBottom: "0.75rem"
+                    }}>
+                      {skill.icon}
+                    </div>
+                    <h4 style={{
+                      fontSize: "1.1rem",
+                      fontWeight: "600",
+                      marginBottom: "0.5rem",
+                      color: "#212529"
+                    }}>
                       {skill.name}
-                    </h3>
-                  </div>
-                  <div
-                    style={{
+                    </h4>
+                    <div style={{
                       height: "6px",
                       background: "#e9ecef",
                       borderRadius: "3px",
                       overflow: "hidden",
-                      marginBottom: "0.5rem",
-                    }}
-                  >
-                    <div
-                      style={{
-                        height: "100%",
-                        background: "linear-gradient(90deg, #212529, #495057)",
-                        borderRadius: "3px",
+                      marginTop: "0.75rem"
+                    }}>
+                      <div style={{
                         width: `${skill.level}%`,
-                        transition: "width 1.5s ease-in-out",
-                      }}
-                    />
+                        height: "100%",
+                        background: "#212529",
+                        borderRadius: "3px"
+                      }} />
+                    </div>
                   </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      color: "#6c757d",
-                      fontSize: "0.9rem",
-                    }}
-                  >
-                    <span>Proficiency</span>
-                    <span>{skill.level}%</span>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -957,34 +863,6 @@ export default function Home() {
               marginBottom: "3rem",
             }}
           >
-            <div
-              style={{
-                padding: "2rem",
-                background: "rgba(255,255,255,0.1)",
-                borderRadius: "15px",
-                transition: "all 0.3s ease",
-                cursor: "pointer",
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.background = "rgba(255,255,255,0.15)";
-                e.currentTarget.style.transform = "translateY(-5px)";
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.background = "rgba(255,255,255,0.1)";
-                e.currentTarget.style.transform = "translateY(0)";
-              }}
-              onClick={() =>
-                window.open(
-                  "mailto:melokuhle99@gmail.com?subject=Let's Connect&body=Hi Melokuhle, I'd like to get in touch with you.",
-                  "_blank"
-                )
-              }
-            >
-              <h3 style={{ fontSize: "1.3rem", marginBottom: "1rem" }}>
-                📧 Email
-              </h3>
-              <p style={{ opacity: 0.8 }}>melokuhle99@gmail.com</p>
-            </div>
 
             <div
               style={{
@@ -1003,13 +881,13 @@ export default function Home() {
                 e.currentTarget.style.transform = "translateY(0)";
               }}
               onClick={() =>
-                window.open("https://linkedin.com/in/melokuhle", "_blank")
+                window.open("mailto:melokuhlemaphisa99@gmail.com", "_blank")
               }
             >
               <h3 style={{ fontSize: "1.3rem", marginBottom: "1rem" }}>
-                💼 LinkedIn
+                ✉️ Email Me
               </h3>
-              <p style={{ opacity: 0.8 }}>linkedin.com/in/melokuhle</p>
+              <p style={{ opacity: 0.8 }}>melokuhlemaphisa99@gmail.com</p>
             </div>
 
             <div
